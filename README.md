@@ -23,20 +23,34 @@ The official installation method is using [Docker](https://docs.docker.com/engin
 If you want to make RTMPie available under a publicly accessible domain (e.g. demo.rtmpie.de), make sure to set up the necessary DNS settings before continuing.
 
 When Docker is installed, proceed with installing RTMPie:
+
 ```bash
+# Create a directory for the installation and change the working directory
 mkdir /opt/rtmpie
 cd /opt/rtmpie
 
 # Download the small installer script
-wget https://raw.githubusercontent.com/ngrie/rtmpie/main/setup.sh
-bash setup.sh # Answer the questions
+wget -q -O setup.sh https://github.com/keyiflerolsun/rtmpie/blob/main/setup.sh?raw=True
 
-# Run the docker setup
-docker-compose pull
-docker-compose up -d
+# Make the script executable
+chmod +x setup.sh
+
+# Run the installer and answer the questions
+bash setup.sh
+
+# Start the containers
+docker compose up -d
 ```
 
 The webinteface will be available after a few seconds and you can login using the default credentials `admin / admin`.
+
+#### Stream Example
+
+```bash
+ffmpeg -re -i 'https://meclistv-live.ercdn.net/meclistv/meclistv_720p.m3u8' \
+	-c:v libx264 -preset veryfast -b:v 1M -c:a aac -b:a 128k -f flv \
+	'rtmp://127.0.0.1/live/test?key=5c24303c30494b198e6519ccde445758'
+```
 
 ## Credits
 
