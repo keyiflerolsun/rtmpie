@@ -9,14 +9,14 @@ volumes:
 
 services:
 
-    php:
+    rtmpie_php:
         container_name : rtmpie_php
         image          : ghcr.io/keyiflerolsun/rtmpie/php:latest
         restart        : unless-stopped
 
         environment:
             APP_SECRET         : ${RTMPIE_APP_SECRET}
-            DATABASE_URL       : mysql://root:${RTMPIE_DATABASE_PASSWORD}@database:3306/rtmpie?serverVersion=mariadb-10.4.12
+            DATABASE_URL       : mysql://root:${RTMPIE_DATABASE_PASSWORD}@rtmpie_database:3306/rtmpie?serverVersion=mariadb-10.4.12
             MERCURE_PUBLIC_URL : ${RTMPIE_HTTP_SCHEME}://${RTMPIE_HOSTNAME}/.well-known/mercure
             MERCURE_JWT_SECRET : ${RTMPIE_MERCURE_JWT_KEY}
 
@@ -24,7 +24,7 @@ services:
             - local
 
 
-    caddy:
+    rtmpie_caddy:
         container_name : rtmpie_caddy
         image          : ghcr.io/keyiflerolsun/rtmpie/caddy:latest
         restart        : unless-stopped
@@ -44,7 +44,7 @@ services:
             - 443:443
 
 
-    rtmp:
+    rtmpie_rtmp:
         container_name : rtmpie_rtmp
         image          : ghcr.io/keyiflerolsun/rtmpie/rtmp:latest
         restart        : unless-stopped
@@ -55,7 +55,7 @@ services:
             - 1935:1935
 
 
-    database:
+    rtmpie_database:
         container_name : rtmpie_database
         image          : mariadb:10.4
         restart        : unless-stopped
