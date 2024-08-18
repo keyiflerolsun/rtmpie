@@ -11,7 +11,7 @@ services:
 
     rtmpie_php:
         container_name : rtmpie_php
-        image          : ghcr.io/keyiflerolsun/rtmpie/php:latest
+        image          : ghcr.io/keyiflerolsun/rtmpie/php:v1.0.1-hls
         restart        : unless-stopped
 
         environment:
@@ -26,7 +26,7 @@ services:
 
     rtmpie_caddy:
         container_name : rtmpie_caddy
-        image          : ghcr.io/keyiflerolsun/rtmpie/caddy:latest
+        image          : ghcr.io/keyiflerolsun/rtmpie/caddy:v1.0.1-hls
         restart        : unless-stopped
 
         environment:
@@ -46,7 +46,7 @@ services:
 
     rtmpie_rtmp:
         container_name : rtmpie_rtmp
-        image          : ghcr.io/keyiflerolsun/rtmpie/rtmp:latest
+        image          : ghcr.io/keyiflerolsun/rtmpie/rtmp:v1.0.1-hls
         restart        : unless-stopped
 
         networks:
