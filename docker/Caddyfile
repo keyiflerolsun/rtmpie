@@ -1,4 +1,4 @@
-caddy:80, {$SERVER_NAME:localhost}
+rtmpie_caddy:80, {$SERVER_NAME:localhost}
 
 log
 
@@ -16,10 +16,10 @@ route {
 
 	route /live {
         rewrite * /live?{query}&port=1935&app=live
-        reverse_proxy http://rtmp
+        reverse_proxy http://rtmpie_rtmp
     }
 
-	php_fastcgi php:9000
+	php_fastcgi rtmpie_php:9000
 
 	encode zstd gzip
     file_server

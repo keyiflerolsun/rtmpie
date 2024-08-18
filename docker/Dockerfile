@@ -63,10 +63,10 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV APP_ENV prod
 ENV SYMFONY_ENV prod
 ENV APP_DEBUG 0
-ENV DATABASE_URL mysql://root:rtmpie@database:3306/rtmpie?serverVersion=mariadb-10.4.12
-ENV MERCURE_URL http://caddy/.well-known/mercure
-ENV RTMP_THUMBNAILS_BASE_URL http://rtmp/thumbnails/
-ENV RTMP_CONTROL_MODULE_BASE_URL http://rtmp/control/
+ENV DATABASE_URL mysql://root:rtmpie@rtmpie_database:3306/rtmpie?serverVersion=mariadb-10.4.12
+ENV MERCURE_URL http://rtmpie_caddy/.well-known/mercure
+ENV RTMP_THUMBNAILS_BASE_URL http://rtmpie_rtmp/thumbnails/
+ENV RTMP_CONTROL_MODULE_BASE_URL http://rtmpie_rtmp/control/
 ENV RTMP_HTTP_FLV_BASE_URL /live
 
 RUN composer install --prefer-dist --no-dev --no-progress --no-interaction --optimize-autoloader && \
